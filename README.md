@@ -49,6 +49,7 @@ El proyecto tiene varias partes que interactuan entre si, pero cada una de ellas
 ### ¿Como funciona?
 
 ```mermaid
+%%{init: {'theme':'base', 'themeVariables': { 'darkMode':'true', 'background':'#0d1117', 'primaryColor':'#0d1117', 'primaryBorderColor':'#30363d', 'primaryTextColor':'#c9d1d9', 'secondaryColor':'#0d1117', 'secondaryBorderColor':'#30363d', 'secondaryTextColor':'#c9d1d9', 'tertiaryColor':'#0d1117', 'tertiaryBorderColor':'#30363d', 'tertiaryTextColor':'#c9d1d9'}}}%%
 graph TB
     subgraph Portales["Portales de Empleo"]
         P1[GetOnBoard]
@@ -95,11 +96,29 @@ graph TB
     B4 -->|JSON Response| F1
     F4 -->|Visualiza| User
 
-    style Scraper fill:#e1f5ff
-    style Backend fill:#fff4e1
-    style Frontend fill:#ffe1f5
-    style Database fill:#e1ffe1
-    style Portales fill:#f0f0f0
+    style Portales fill:#0d1117,stroke:#30363d,stroke-width:2px,color:#c9d1d9,rx:12,ry:12
+    style Scraper fill:#0d1117,stroke:#58a6ff,stroke-width:2px,color:#58a6ff,rx:12,ry:12
+    style Database fill:#0d1117,stroke:#a371f7,stroke-width:2px,color:#a371f7,rx:12,ry:12
+    style Backend fill:#0d1117,stroke:#f85149,stroke-width:2px,color:#f85149,rx:12,ry:12
+    style Frontend fill:#0d1117,stroke:#3fb950,stroke-width:2px,color:#3fb950,rx:12,ry:12
+    style P1 fill:#0d1117,stroke:#30363d,stroke-width:1px,color:#c9d1d9,rx:12,ry:12
+    style P2 fill:#0d1117,stroke:#30363d,stroke-width:1px,color:#c9d1d9,rx:12,ry:12
+    style P3 fill:#0d1117,stroke:#30363d,stroke-width:1px,color:#c9d1d9,rx:12,ry:12
+    style P4 fill:#0d1117,stroke:#30363d,stroke-width:1px,color:#c9d1d9,rx:12,ry:12
+    style S1 fill:#0d1117,stroke:#58a6ff,stroke-width:1px,color:#c9d1d9,rx:12,ry:12
+    style S2 fill:#0d1117,stroke:#58a6ff,stroke-width:1px,color:#c9d1d9,rx:12,ry:12
+    style S3 fill:#0d1117,stroke:#58a6ff,stroke-width:1px,color:#c9d1d9,rx:12,ry:12
+    style S4 fill:#0d1117,stroke:#58a6ff,stroke-width:1px,color:#c9d1d9,rx:12,ry:12
+    style DB fill:#0d1117,stroke:#a371f7,stroke-width:1px,color:#c9d1d9,rx:12,ry:12
+    style B1 fill:#0d1117,stroke:#f85149,stroke-width:1px,color:#c9d1d9,rx:12,ry:12
+    style B2 fill:#0d1117,stroke:#f85149,stroke-width:1px,color:#c9d1d9,rx:12,ry:12
+    style B3 fill:#0d1117,stroke:#f85149,stroke-width:1px,color:#c9d1d9,rx:12,ry:12
+    style B4 fill:#0d1117,stroke:#f85149,stroke-width:1px,color:#c9d1d9,rx:12,ry:12
+    style F1 fill:#0d1117,stroke:#3fb950,stroke-width:1px,color:#c9d1d9,rx:12,ry:12
+    style F2 fill:#0d1117,stroke:#3fb950,stroke-width:1px,color:#c9d1d9,rx:12,12
+    style F3 fill:#0d1117,stroke:#3fb950,stroke-width:1px,color:#c9d1d9,rx:12,ry:12
+    style F4 fill:#0d1117,stroke:#3fb950,stroke-width:1px,color:#c9d1d9,rx:12,ry:12
+    style User fill:#0d1117,stroke:#30363d,stroke-width:1px,color:#c9d1d9,rx:12,ry:12
 ```
 
 **Flujo de datos:**
