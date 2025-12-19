@@ -40,7 +40,7 @@ Inicialmente este es un proyecto para aprender las tecnologias mencionadas anter
 
 No me importa el dinero, solo queria aprender estas tecnologias mientras me quiebro la cabeza haciendl algo bacan. Ademas de quitarme la duda de que tecnologias estan sonando en el mercado laboral chileno.
 
-**Te recuerdo que el proyecto tiene licencia GPLv3 y fue concebido con fines educativos.**
+**Te recuerdo que el proyecto tiene licencia MIT y fue concebido porque simplmente queria aprender estas tecnologias a la vez que construyo algo util y con sentido.**
 
 ### ¿Es complejo el proyecto?
 
