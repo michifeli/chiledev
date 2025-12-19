@@ -1,7 +1,7 @@
 {
   "name": "chiledev",
   "version": "1.0.0",
-  "description": "Plataforma de análisis de empleos tech en Chile",
+  "description": "Monitoreo automatizado de tendencias y empleabilidad tech en Chile",
   "private": true,
   "workspaces": [
     "scraper",
