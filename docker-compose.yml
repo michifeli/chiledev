@@ -1,0 +1,104 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: chiledev-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME:-chiledev}
+      POSTGRES_USER: ${DB_USER:-chiledev_user}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-change_me}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/init:/docker-entrypoint-initdb.d
+    networks:
+      - chiledev-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-chiledev_user}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Backend (Laravel)
+  backend:
+    build:
+      context: ./backend
+      dockerfile: ../docker/backend/Dockerfile
+    container_name: chiledev-backend
+    restart: unless-stopped
+    environment:
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_DATABASE=${DB_NAME:-chiledev}
+      - DB_USERNAME=${DB_USER:-chiledev_user}
+      - DB_PASSWORD=${DB_PASSWORD:-change_me}
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/var/www/html
+      - backend_vendor:/var/www/html/vendor
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - chiledev-network
+    command: php artisan serve --host=0.0.0.0 --port=8000
+
+  # Frontend (React + Vite)
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: ../docker/frontend/Dockerfile
+    container_name: chiledev-frontend
+    restart: unless-stopped
+    environment:
+      - VITE_API_URL=http://localhost:8000/api
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+    networks:
+      - chiledev-network
+    command: pnpm dev --host
+
+  # Scraper (Node.js + Playwright)
+  scraper:
+    build:
+      context: ./scraper
+      dockerfile: ../docker/scraper/Dockerfile
+    container_name: chiledev-scraper
+    restart: unless-stopped
+    environment:
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_NAME=${DB_NAME:-chiledev}
+      - DB_USER=${DB_USER:-chiledev_user}
+      - DB_PASSWORD=${DB_PASSWORD:-change_me}
+      - SCRAPER_HEADLESS=${SCRAPER_HEADLESS:-true}
+    volumes:
+      - ./scraper:/app
+      - /app/node_modules
+      - scraper_data:/app/data
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - chiledev-network
+    # Uncomment to run immediately on startup
+    # command: node src/index.js
+
+networks:
+  chiledev-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  backend_vendor:
+  scraper_data:
