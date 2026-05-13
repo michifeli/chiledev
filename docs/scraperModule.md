@@ -20,7 +20,6 @@ interface ScrapedJob {
   salary_min: number | null; 
   salary_max: number | null; 
   raw_description: string; // Texto plano íntegro extraído de la publicación
-  time_stamp: string;      // Fecha de cuando fue extraida la oferta
   status: 'PENDING';       // Indicación para procesar posteriormente la data
 }
 ```
