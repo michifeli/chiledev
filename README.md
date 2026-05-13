@@ -18,7 +18,7 @@ ChileDev resuelve la asimetría de información en el ecosistema TI extrayendo y
 
 Tal como informa ENADEL, uno de los principales factores de no contratación es la falta de competencias o habilidades técnicas requeridas. Si bien ChileDev no tiene por objetivo capacitar directamente a los usuarios en dichas habilidades, sí busca trazar la ruta a seguir y brindar las facilidades necesarias para orientar el aprendizaje hacia lo que el mercado realmente exige.
 
-## Arquitecura y Flujo de Datos
+## Arquitecura Técnica
 
 ```mermaid
 %%{init: {'theme':'base', 'themeVariables': { 'darkMode':'true', 'background':'#0d1117', 'primaryColor':'#0d1117', 'primaryBorderColor':'#30363d', 'primaryTextColor':'#c9d1d9', 'secondaryColor':'#0d1117', 'secondaryBorderColor':'#30363d', 'secondaryTextColor':'#c9d1d9', 'tertiaryColor':'#0d1117', 'tertiaryBorderColor':'#30363d', 'tertiaryTextColor':'#c9d1d9'}}}%%
@@ -101,10 +101,3 @@ graph TB
     style F4 fill:#0d1117,stroke:#3fb950,stroke-width:1px,color:#c9d1d9,rx:12,ry:12
     style User fill:#0d1117,stroke:#30363d,stroke-width:1px,color:#c9d1d9,rx:12,ry:12
 ```
-
-**Ciclo de Vida de los Datos:**
-
-1. **Extracción (Cron Job):** El módulo scraper basado en Playwright navega periódicamente por los portales de empleo configurados, extrayendo la información bruta de las descripciones de cargo y almacenando este texto en la base de datos relacional.
-2. **Normalización Semántica (LLM):** El backend consulta el texto bruto almacenado y lo envía a un Modelo de Lenguaje Grande (LLM) mediante un prompt estricto. La IA analiza el contexto, estandariza las tecnologías (evitando duplicidades por sintaxis) y retorna un objeto JSON estructurado.
-3. **Persistencia y Procesamiento:** El backend recibe el JSON, actualiza los registros en PostgreSQL con las tecnologías oficiales detectadas y calcula las frecuencias y promedios en tiempo real.
-4. **Consumo Frontend:** La interfaz desarrollada en React consume la API, renderizando dashboards interactivos que permiten al usuario final filtrar y analizar el estado del mercado laboral con datos totalmente normalizados.
