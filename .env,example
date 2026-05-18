@@ -1,0 +1,4 @@
+DB_USER=ingresa_tu_usuario
+DB_PASSWORD=ingresa_tu_contrasena
+DB_NAME=chiledev_db
+DB_PORT=5432
